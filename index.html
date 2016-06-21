@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nederlandstalige wachtwoordgenerator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"
+            integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
+            crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+    <section>
+        <header>
+            <h1>Nederlandstalige wachtwoordgenerator</h1>
+            <ul class="nav">
+                <li><a href="#wat">Wat?</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </header>
+        <main id="generator">
+            <h1 id="password"></h1>
+            <p>
+                Dit is een willekeurig, gegenereerd wachtwoord uit een lijst van <span class="wordcount"></span> woorden.
+                Het wachtwoord heeft een entropie van <span class="entropyBits"></span> bits,
+                waardoor het <span class="entropyYears"></span> jaar kost om het wachtwoord te kraken met <span class="hashSpeed"></span> pogingen per seconde.
+            </p>
+            <p><a class="button" href="#" role="button" onclick="generate()">Genereer</a></p>
+            <table>
+                <tr>
+                    <td>
+                        Lijst:
+                        <select id="list">
+                            <option value="1000">1.000 meestgebruikt</option>
+                            <option value="2000" selected>2.000 meestgebruikt</option>
+                            <option value="5000">5.000 meestgebruikt</option>
+                            <option value="10000">10.000 meestgebruikt</option>
+                            <option value="all">Alle woorden</option>
+                        </select>
+                    </td>
+                    <td>
+                        Woorden:
+                        <input id="password-length" type="number" value="4" min="4"/>
+                    </td>
+                </tr>
+            </table>
+        </main>
+        <article>
+            <h1 id="wat">Wat doet dit?</h1>
+            <h1 id="faq">FAQ</h1>
+            <h1 id="bronnen">Bronnen</h1>
+            <p>Woordenlijsten:</p>
+            <ul>
+                <li>
+                    Meest voorkomende woorden:
+                    <a href="http://wortschatz.uni-leipzig.de/html/wliste.html">Universiteit van Leipzig</a></li>.
+                    Licentie: geen.
+                <li>
+                    Complete Woordenlijst:
+                    <a href="http://www.opentaal.org/bestanden/doc_download/20-woordenlijst-v-210g-voor-openofficeorg-3">OpenTaal</a>.
+                    Licentie: Creative Commons, Naamsvermelding 3.0 (unported) <em>of</em> BSD (herziene versie).
+                </li>
+            </ul>
+        </article>
+        <footer>
+            <a class="github">Github</a>
+            <span class="copyright">Gepubliceerd onder de <a href="LICENTIE.txt" class="eupl">EUPL</a></span>
+        </footer>
+    </section>
+</body>
+</html>
