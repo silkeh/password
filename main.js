@@ -37,27 +37,37 @@ function loadPasswords(list) {
 
 // Generate a password from the loaded list
 function generate() {
+    // Required password length
+    var minLength = Math.log(passwords.length)/Math.log(26);
+
+    // Array for password generation
+    var random = new Uint32Array(passwordLength);
     var gen = [];
 
-    // Grab `passwordLength` random elements
-    for ( i = 0; i < passwordLength; i++ ) {
-        var word;
+    // Fill the array with random values
+    window.crypto.getRandomValues(random);
 
-        // Only pick words that have sufficient length
-        while (gen[i] == undefined) {
-            // Get password from list
-            var value = new Uint32Array(1);
-            window.crypto.getRandomValues(value);
-            word = passwords[Math.floor(value[0]/(Math.pow(2,32)-1) * passwords.length)].toLowerCase();
+    random.forEach(function (n) {
+        var w = passwords[Math.floor(Number(n)/Math.pow(2,32) * passwords.length )]
+        gen.push(w.toLowerCase());
+    });
 
-            // Save password if long enough
-            if ( Math.pow(26, word.length) > passwords.length )
-                gen[i] = word;
-        }
+    // Generate an array with the word lengths
+    var lengths = gen.map(function (el) { return el.length });
+
+    // Check if every word has as much entropy as the individual letters
+    if ( Math.min.apply(Math, lengths) >= minLength ) {
+        // Display the password
+        $( "h1#password" ).html(gen.join(" "));
+    } else {
+        // Try again
+        console.log(
+            'Not enough entropy, '
+            + Math.ceil(minLength) + ' characters required: '
+            + gen.join(" ")
+        );
+        generate();
     }
-
-    // Display as password
-    $( "h1#password" ).html(gen.join(" "));
 }
 
 // Set the length of the password
