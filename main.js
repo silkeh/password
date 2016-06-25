@@ -20,10 +20,11 @@ var passwords;
 var passwordLength = 4;
 var defaultList = 2000;
 var hashSpeed = 10000;
+var language = $('html').attr('lang');
 
 // Load a password list
 function loadPasswords(list) {
-    $.getJSON("lists/" + list + ".json", function ( data ) {
+    $.getJSON("lists/" + language + '/' + list + ".json", function ( data ) {
         // Save list
         passwords = data;
 
@@ -86,14 +87,26 @@ function updateText() {
     var space = Math.pow(passwords.length, passwordLength);
     var bits  = Math.log(space)/Math.log(2);
 
-    $('.wordcount').html(passwords.length);
+    $('.wordCount').html(passwords.length);
     $('.entropyBits').html(Math.round(bits, 0));
     $('.entropyYears').html(Math.round(space/hashSpeed/31556925.1163, 1));
     $('.hashSpeed').html(hashSpeed);
 }
 
-// Start with the default word list
-loadPasswords(defaultList);
+// Load the list of available password dictionaries
+function loadList() {
+    $.getJSON("lists/index.json", function ( data ) {
+        // Save list
+        $.each(data['nl'], function(list, descr) {
+            $("#list").append($("<option />").val(list).text(descr));
+        });
+
+        // Load the default word list
+        loadPasswords(defaultList);
+    });
+}
+
+loadList();
 
 // Create change functions when document is ready.
 $( "document" ).ready( function () {
