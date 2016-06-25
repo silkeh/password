@@ -49,7 +49,7 @@ function generate() {
     window.crypto.getRandomValues(random);
 
     random.forEach(function (n) {
-        var w = passwords[Math.floor(Number(n)/Math.pow(2,32) * passwords.length )]
+        var w = passwords[Math.floor(Number(n)/Math.pow(2,32) * passwords.length )];
         gen.push(w.toLowerCase());
     });
 
@@ -88,8 +88,8 @@ function updateText() {
     var bits  = Math.log(space)/Math.log(2);
 
     $('.wordCount').html(passwords.length);
-    $('.entropyBits').html(Math.round(bits, 0));
-    $('.entropyYears').html(Math.round(space/hashSpeed/31556925.1163, 1));
+    $('.entropyBits').html(Math.round(bits));
+    $('.entropyYears').html(Math.round(space/hashSpeed/31556925.1163));
     $('.hashSpeed').html(hashSpeed);
 }
 
@@ -110,14 +110,16 @@ loadList();
 
 // Create change functions when document is ready.
 $( "document" ).ready( function () {
-    $("#list").val(defaultList);
-    $("#password-length").val(passwordLength);
+    var list = $("#list");
+    var leng = $("#password-length");
+    list.val(defaultList);
+    leng.val(passwordLength);
 
-    $("#list").change(function () {
+    list.change(function () {
         loadPasswords($("#list").val());
     });
 
-    $("#password-length").change(function () {
+    leng.change(function () {
         setLength($("#password-length").val());
     })
 });
