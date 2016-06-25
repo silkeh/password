@@ -73,7 +73,7 @@ function generate() {
 
 // Set the length of the password
 function setLength(length) {
-    passwordLength = length;
+    passwordLength = Number(length);
 
     // Generate a new password
     generate();
