@@ -49,13 +49,22 @@ main {
 }
 
 main .button {
-
     font-size: 110%;
     margin: .5em 0;
 }
 
 main .setting {
     margin-right: 1em;
+}
+
+main #list, main #password-length {
+    font-size: 90%;
+    font-weight: inherit;
+    background-color: white;
+    border: none;
+    height: 1.8em;
+    text-align: center;
+    border-radius: .2em;
 }
 
 main #password-length {
