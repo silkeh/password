@@ -16,9 +16,13 @@
  * permissions and limitations under the Licence.
  */
 
+@import 'https://fonts.googleapis.com/css?family=Open Sans;300,300i,600,600i';
+
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    background: white;
 }
 
 section {
@@ -27,28 +31,75 @@ section {
 }
 
 header {
-    padding: 1em 0em;
-    border-bottom: 1px solid lightgray;
+    padding: .5em 0em;
+    border-bottom: .01em solid rgb(210,210,210);
     margin-bottom: 1em;
 }
 
 header h1 {
-    display: inline-block;
+    font-size: 180%;
     margin: 0;
-}
-
-header ul {
-    display: block;
-    list-style: none;
-    float: right;
-}
-
-header li {
-    display: inline-block;
 }
 
 main {
     padding: 1em;
     text-align: center;
     background-color: lightgray;
+    border-radius: .25em;
+}
+
+main .button {
+
+    font-size: 110%;
+    margin: .5em 0em;
+}
+
+main .setting {
+    margin-right: 1em;
+}
+
+main #password-length {
+    width: 2.5em;
+}
+
+footer {
+    border-top: .01em solid rgb(210,210,210);
+}
+
+footer .github {
+    margin-top: .2em;
+}
+
+footer .copyright {
+    margin-top: .2em;
+    float: right;
+}
+
+h1, h2, h3, h4, h5, strong {
+    font-weight: 600;
+}
+
+a {
+    color: seagreen;
+    text-decoration: none;
+}
+
+a:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+a.button {
+    display: inline-block;
+    color: white;
+    background: seagreen;
+    text-decoration: none;
+    border-radius: .2em;
+    padding: .5em;
+}
+
+a.button:hover {
+    color: white;
+    background: darkgreen;
+    text-decoration: none;
 }
