@@ -15,36 +15,39 @@
     <section>
         <header>
             <h1>Nederlandstalige wachtwoordgenerator</h1>
-            <ul class="nav">
-                <li><a href="#wat">Wat?</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
         </header>
         <main id="generator">
             <h1 id="password">&nbsp;</h1>
             <p>
                 Dit is een willekeurig, gegenereerd wachtwoord uit een lijst van <span class="wordCount"></span> woorden.
                 Het wachtwoord heeft een entropie van <span class="entropyBits"></span> bits,
-                waardoor het <span class="entropyYears"></span> jaar kost om het wachtwoord te kraken met <span class="hashSpeed"></span> pogingen per seconde.
+                waardoor het <span class="entropyYears"></span> jaar kost om het wachtwoord te kraken met
+                <span class="hashSpeed"></span> pogingen per seconde.
             </p>
-            <p><a class="button" href="#" role="button" onclick="generate()">Genereer</a></p>
-            <table>
-                <tr>
-                    <td>
-                        Lijst:
-                        <select id="list">
-                        </select>
-                    </td>
-                    <td>
-                        Woorden:
-                        <input id="password-length" type="number" value="4" min="4"/>
-                    </td>
-                </tr>
-            </table>
+            <p><a class="generate button" href="#" role="button" onclick="generate()">Genereer</a></p>
+            <span class="setting">
+                Lijst:
+                <select id="list">
+                </select>
+            </span>
+            <span class="setting">
+                Woorden:
+                <input id="password-length" type="number" value="4" min="4"/>
+            </span>
         </main>
         <article>
             <h2 id="wat">Wat doet dit?</h2>
-            <h2 id="faq">FAQ</h2>
+            <p>
+                Deze wachtwoordgenerator genereerd een veilig en goed te onthouden wachtwoord volgens de regels van
+                <a href="https://xkcd.com/936">XKCD 936</a>.
+                Het gebruik van willekeurige wachtwoorden zorgt voor wachtwoorden die beter te onthouden zijn,
+                terwijl het wachtwoord nog steeds moeilijk te kraken is.
+            </p>
+            <p>
+                Het wachtwoord wordt veilig door jouw browser gegenereerd,
+                waardoor het wachtwoord de browser nooit verlaat.
+            </p>
+
             <h2 id="bronnen">Bronnen</h2>
             <p>Woordenlijsten:</p>
             <ul>
@@ -64,8 +67,8 @@
             </ul>
         </article>
         <footer>
-            <a class="github">Github</a>
-            <span class="copyright">Gepubliceerd onder de <a href="LICENTIE.txt" class="eupl">EUPL</a></span>
+            <a class="github button" href="https://github.com/silkeh/nlpassword">Github</a>
+            <span class="copyright">Gepubliceerd onder de <a href="LICENTIE.txt" class="eupl button">EUPL</a></span>
         </footer>
     </section>
 </body>
