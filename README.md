@@ -3,8 +3,8 @@ This is a simple password generator in the style of [XKCD 936][1] with word list
 
   - Dutch
 
-It can be and used on [password.slxh.eu][2], or you can run it yourself.
-It is also possible to download or visit the website with [IPFS][3]: [/ipns/password.slxh.eu][4].
+It can be used on [password.slxh.eu][2], or you can run it yourself.
+It is also possible to download or visit from [IPFS][3]: [/ipns/password.slxh.eu][4].
 
 ## Building
 This website is setup with [Hugo][5],
