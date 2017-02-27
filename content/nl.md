@@ -2,6 +2,7 @@
 title: Nederlandstalige wachtwoordgenerator
 lang: nl
 language: Nederlands
+licence: Licentie
 text:
   generate: Genereer
   list: Lijst
