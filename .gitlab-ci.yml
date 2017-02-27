@@ -4,7 +4,7 @@ variables:
 build:
   type: build
   script:
-    - ./deploy.sh less hugo minify
+    - ./deploy.sh hugo minify
   artifacts:
     paths:
       - public
@@ -12,7 +12,7 @@ build:
 deploy-production:
   type: deploy
   script:
-    - ./deploy.sh less hugo minify
+    - ./deploy.sh hugo minify
     - rsync -a public/ $WWW_DIR
   environment:
     name: production
@@ -23,7 +23,7 @@ deploy-production:
 deploy-ipfs:
   type: deploy
   script:
-    - ./deploy.sh less hugo minify ipfs
+    - ./deploy.sh hugo minify ipfs
   environment:
       name: ipfs
       url: https://ipfs.slxh.nl/ipns/password.slxh.nl
