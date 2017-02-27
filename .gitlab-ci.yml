@@ -24,7 +24,7 @@ deploy-production:
 deploy-ipfs:
   type: deploy
   script:
-    - ipfs add -r public/
+    - ipfs add -qr public/
   environment:
       name: ipfs
       url: https://ipfs.slxh.nl/ipns/password.slxh.nl
