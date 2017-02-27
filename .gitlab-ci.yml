@@ -1,0 +1,31 @@
+variables:
+    WWW_DIR: /www/password/
+
+build:
+  type: build
+  script:
+    - ./deploy.sh less hugo minify
+  artifacts:
+    paths:
+      - public
+
+deploy-production:
+  type: deploy
+  script:
+    - ./deploy.sh less hugo minify
+    - rsync -a public/ $WWW_DIR
+  environment:
+    name: production
+    url:  https://password.slxh.nl
+  only:
+    - master
+
+deploy-ipfs:
+  type: deploy
+  script:
+    - ./deploy.sh less hugo minify ipfs
+  environment:
+      name: ipfs
+      url: https://ipfs.slxh.nl/ipns/password.slxh.nl
+  only:
+    - master
