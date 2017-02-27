@@ -24,7 +24,7 @@ var language = $('html').attr('lang');
 
 // Load a password list
 function loadPasswords(list) {
-    $.getJSON("lists/" + language + '/' + list + ".json", function ( data ) {
+    $.getJSON("../lists/" + language + '/' + list + ".json", function ( data ) {
         // Save list
         passwords = data;
 
@@ -95,7 +95,7 @@ function updateText() {
 
 // Load the list of available password dictionaries
 function loadList() {
-    $.getJSON("lists/index.json", function ( data ) {
+    $.getJSON("../lists/index.json", function ( data ) {
         // Save list
         $.each(data['nl'], function(list, descr) {
             $("#list").append($("<option />").val(list).text(descr));

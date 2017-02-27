@@ -1,3 +1,18 @@
+---
+title: Nederlandstalige wachtwoordgenerator
+lang: nl
+language: Nederlands
+text:
+  generate: Genereer
+  list: Lijst
+  words: Woorden
+  published: Gepubliceerd onder de
+  description: |
+    Dit is een willekeurig, gegenereerd wachtwoord uit een lijst van <span class="wordCount"></span> woorden.
+    Het wachtwoord heeft een entropie van <span class="entropyBits"></span> bits,
+    waardoor het <span class="entropyYears"></span> jaar kost om het wachtwoord te kraken met
+    <span class="hashSpeed"></span> pogingen per seconde.
+---
 ## Wat doet dit?
 Deze wachtwoordgenerator genereert een veilig en goed te onthouden wachtwoord volgens de uitleg van [XKCD 936][1].
 Het gebruik van willekeurige woorden zorgt voor wachtwoorden die beter te onthouden zijn,
