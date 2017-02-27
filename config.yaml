@@ -1,0 +1,4 @@
+language: "en-GB"
+title: "Password Generator"
+#baseurl: "http://"
+relativeurls: true

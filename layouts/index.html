@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+<body>
+<section>
+    <header>
+        <h1>{{ .Site.Title }}</h1>
+    </header>
+    <main>
+        <h2>Languages</h2>
+        {{ range .Data.Pages }}
+        <a href="{{ .URL }}">{{ .Params.language }}</a><br/>
+        {{ end }}
+    </main>
+    <article>
+
+        {{ .Content }}
+    </article>
+    {{ partial "footer" . }}
+</section>
+</body>
+</html>

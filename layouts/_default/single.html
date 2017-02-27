@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ .File.BaseFileName }}">
+{{ partial "head" . }}
+<body>
+<section>
+    <header>
+        <h1>{{ .Title }}</h1>
+    </header>
+    <main id="generator">
+        {{ partial "generator" . }}
+    </main>
+    <article>
+        {{ .Content }}
+    </article>
+    {{ partial "footer" . }}
+</section>
+</body>
+</html>

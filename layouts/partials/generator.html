@@ -1,0 +1,15 @@
+<h1 id="password">&nbsp;</h1>
+<p>
+    {{ .Params.text.description | safeHTML }}
+</p>
+<p>
+    <a class="generate button" href="#" role="button" onclick="generate()">{{ .Params.text.generate }}</a>
+</p>
+<span class="setting">
+    {{ .Params.text.list }}:
+    <select id="list"></select>
+</span>
+<span class="setting">
+    {{ .Params.text.words }}:
+    <input id="password-length" type="number" value="4" min="4"/>
+</span>
