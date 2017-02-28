@@ -19,7 +19,7 @@
 @import 'https://fonts.googleapis.com/css?family=Open Sans;300,300i,600,600i';
 
 body {
-    margin: 0;
+    margin: 1em;
     font-family: "Open Sans", sans-serif;
     font-weight: 300;
     background: white;
