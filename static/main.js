@@ -19,8 +19,19 @@
 var passwords;
 var passwordLength = 4;
 var defaultList = 2000;
-var hashSpeed = 10000;
+var hashSpeed = 5; // In 10^6 attempts/second
 var language = $('html').attr('lang');
+
+// Time units
+var secondsHour = 3600;
+var secondsDay  = 86400;
+var secondsYear = 31558149.54; // Seconds in a sidereal year
+var units = {
+    "hour":      '× ' + secondsHour + ' s',
+    "day":       '× ' + secondsDay  + ' s',
+    "year":      '× ' + secondsYear + ' s',
+    "eternity":  '∞ s'
+};
 
 // Load a password list
 function loadPasswords(list) {
@@ -86,10 +97,23 @@ function setLength(length) {
 function updateText() {
     var space = Math.pow(passwords.length, passwordLength);
     var bits  = Math.log(space)/Math.log(2);
+    var time  = space/2/hashSpeed/Math.pow(10,6);
+    var text  = '';
 
+    // Make time readable
+    if(time >= 0 && time < 2*secondsDay)
+        text = Math.round(time/secondsHour) + ' ' + units['hour'];
+    else if(time < 2*secondsYear)
+        text = Math.round(time/secondsDay) + ' ' + units['day'];
+    else if(time < secondsYear * Math.pow(10,9))
+        text = Math.round(time/secondsYear) + ' ' + units['year'];
+    else
+        text = units['eternity'];
+
+    // Show the results in the text
     $('.wordCount').html(passwords.length);
     $('.entropyBits').html(Math.round(bits));
-    $('.entropyYears').html(Math.round(space/hashSpeed/31556925.1163));
+    $('.entropyYears').html(text);
     $('.hashSpeed').html(hashSpeed);
 }
 
@@ -97,9 +121,12 @@ function updateText() {
 function loadList() {
     $.getJSON("../lists/index.json", function ( data ) {
         // Save list
-        $.each(data['nl'], function(list, descr) {
+        $.each(data[language]['lists'], function(list, descr) {
             $("#list").append($("<option />").val(list).text(descr));
         });
+
+        // Save units
+        units = data[language]['units'];
 
         // Load the default word list
         loadPasswords(defaultList);
