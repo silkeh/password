@@ -11,7 +11,7 @@ text:
   description: |
     Dit is een willekeurig, gegenereerd wachtwoord uit een lijst van <span class="wordCount"></span>&nbsp;woorden.
     Het wachtwoord heeft een entropie van <span class="entropyBits"></span>&nbsp;bits,
-    waardoor het <span class="entropyYears"></span> kost om het wachtwoord te kraken met
+    waardoor het ongeveer <span class="entropyYears"></span>&nbsp;kost om het wachtwoord te kraken met
     <span class="hashSpeed"></span>&nbsp;miljoen pogingen per seconde.
 ---
 ## Wat doet dit?
@@ -21,6 +21,11 @@ terwijl het wachtwoord nog steeds moeilijk te kraken is.
 
 Het wachtwoord wordt veilig door jouw browser gegenereerd,
 waardoor het wachtwoord de browser nooit verlaat.
+
+## Waarvoor kan ik dit wachtwoord gebruiken?
+Dit wachtwoord is geschikt voor wachtwoorden die *uniek* en *goed te onthouden* moeten zijn.
+Het wachtwoord is echter slechter dan een lang volledig willekeurig wachtwoord.
+Gebruik daarom altijd een wachtwoordmanager zoals [KeePassX][], [LastPass][] of [1Password][] om volledig willekeurige wachtwoorden te genereren en op te slaan.
 
 ## Bronnen
 Woordenlijsten:
@@ -37,3 +42,6 @@ Woordenlijsten:
 [3]: http://www.opentaal.org/bestanden/doc_download/20-woordenlijst-v-210g-voor-openofficeorg-3
 [4]: http://creativecommons.org/licenses/by/3.0/legalcode
 [5]: http://opensource.org/licenses/bsd-license.php
+[keepassx]: https://www.keepassx.org/
+[lastpass]: https://www.lastpass.com/nl/
+[1password]: https://1password.com/
