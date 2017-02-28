@@ -16,6 +16,9 @@
  * permissions and limitations under the Licence.
  */
 
+var indexFile = '../index.json';
+var listDir   = '../lists/';
+
 var passwords;
 var passwordLength = 4;
 var defaultList = 2000;
@@ -35,7 +38,7 @@ var units = {
 
 // Load a password list
 function loadPasswords(list) {
-    $.getJSON("../lists/" + language + '/' + list + ".json", function ( data ) {
+    $.getJSON(listDir + language + '/' + list + ".json", function ( data ) {
         // Save list
         passwords = data;
 
@@ -118,8 +121,8 @@ function updateText() {
 }
 
 // Load the list of available password dictionaries
-function loadList() {
-    $.getJSON("../lists/index.json", function ( data ) {
+function loadList(indexFile) {
+    $.getJSON(indexFile, function ( data ) {
         // Save list
         $.each(data[language]['lists'], function(list, descr) {
             $("#list").append($("<option />").val(list).text(descr));
@@ -133,7 +136,7 @@ function loadList() {
     });
 }
 
-loadList();
+loadList(indexFile);
 
 // Create change functions when document is ready.
 $( "document" ).ready( function () {
