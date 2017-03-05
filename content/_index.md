@@ -1,4 +1,5 @@
 ---
+title: Password Generator
 lang: en
 language: English
 licence: Licence
