@@ -41,6 +41,15 @@ header h1 {
     margin: 0;
 }
 
+header a {
+    color: inherit;
+}
+
+header a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 main {
     padding: 1em;
     text-align: center;

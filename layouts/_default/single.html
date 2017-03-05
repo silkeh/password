@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ .File.BaseFileName }}">
-{{ partial "head" . }}
+<head>
+    {{ partial "head" . }}
+    <script src="/main.js"></script>
+</head>
 <body>
 <section>
-    <header>
-        <h1>{{ .Title }}</h1>
-    </header>
+    {{ partial "header" . }}
     <main id="generator">
         {{ partial "generator" . }}
     </main>
