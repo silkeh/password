@@ -1,15 +1,25 @@
 {
   "nl": {
     "lists": {
-      "1000": "1000 meestgebruikt",
-      "2000": "2000 meestgebruikt",
-      "5000": "5000 meestgebruikt",
-      "9000": "9000 meestgebruikt",
-      "all":  "Alle woorden",
-      "decorrespondent/1000":  "1000 meestgebruikt (decorrespondent)",
-      "decorrespondent/2000":  "2000 meestgebruikt (decorrespondent)",
-      "decorrespondent/5000":  "5000 meestgebruikt (decorrespondent)",
-      "decorrespondent/10000": "10000 meestgebruikt (decorrespondent)"
+      "local": {
+        "_description": "Nederlandstalige lijsten",
+        "1000": "1000 meestgebruikt",
+        "2000": "2000 meestgebruikt",
+        "5000": "5000 meestgebruikt",
+        "9000": "9000 meestgebruikt",
+        "all": "Alle woorden",
+        "decorrespondent/1000": "1000 meestgebruikt (decorrespondent)",
+        "decorrespondent/2000": "2000 meestgebruikt (decorrespondent)",
+        "decorrespondent/5000": "5000 meestgebruikt (decorrespondent)",
+        "decorrespondent/10000": "10000 meestgebruikt (decorrespondent)"
+      },
+      "generic": {
+        "_description": "Generieke lijsten",
+        "numerals": "Getallen",
+        "hexadecimal": "Hexadecimale getallen",
+        "alphanumeric": "Letters en getallen",
+        "ascii": "ASCII-tekens"
+      }
     },
     "units": {
       "hour":     "uur",

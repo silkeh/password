@@ -21,9 +21,9 @@ var listDir   = '../lists/';
 
 var passwords;
 var passwordLength = 4;
-var defaultList = 2000;
 var hashSpeed = 5; // In 10^6 attempts/second
 var language = $('html').attr('lang');
+var defaultList = language + '/5000';
 
 // Time units
 var secondsHour = 3600;
@@ -38,7 +38,7 @@ var units = {
 
 // Load a password list
 function loadPasswords(list) {
-    $.getJSON(listDir + language + '/' + list + ".json", function ( data ) {
+    $.getJSON(listDir + list + ".json", function ( data ) {
         // Save list
         passwords = data;
 
@@ -54,6 +54,15 @@ function loadPasswords(list) {
 function generate() {
     // Required password length
     var minLength = Math.log(passwords.length)/Math.log(26);
+    var joinChar  = ' ';
+    var lowerCase = true;
+
+    // Small lists have different behaviour
+    if ( passwords.length < 1000 ) {
+        minLength = 0;
+        joinChar  = '';
+        lowerCase = false;
+    }
 
     // Array for password generation
     var random = new Uint32Array(passwordLength);
@@ -64,7 +73,9 @@ function generate() {
 
     random.forEach(function (n) {
         var w = passwords[Math.floor(Number(n)/Math.pow(2,32) * passwords.length )];
-        gen.push(w.toLowerCase());
+        if ( lowerCase )
+            w = w.toLowerCase();
+        gen.push(w);
     });
 
     // Generate an array with the word lengths
@@ -73,13 +84,13 @@ function generate() {
     // Check if every word has as much entropy as the individual letters
     if ( Math.min.apply(Math, lengths) >= minLength ) {
         // Display the password
-        $( "h1#password" ).html(gen.join(" "));
+        $( "h1#password" ).html(gen.join(joinChar));
     } else {
         // Try again
         console.log(
             'Not enough entropy, '
-            + Math.ceil(minLength) + ' characters required: '
-            + gen.join(" ")
+            + minLength + ' characters required: '
+            + gen.join(joinChar)
         );
         generate();
     }
@@ -120,13 +131,37 @@ function updateText() {
     $('.hashSpeed').html(hashSpeed);
 }
 
+// Append a list to the dictionary list
+function appendList(name, data) {
+    // Add description option
+    createOption(name, false, data['_description']);
+
+    // Add other options
+    $.each(data, function(list, descr) {
+        if ( list.substring(0,1) == '_' ) return true;
+        createOption(name, list, descr);
+    });
+}
+
+// Create an option in the dictionary list
+function createOption(name, list, descr) {
+    // Create option from
+    var option = $("<option />").val(name + '/' + list).text(descr);
+
+    // Lists starting with _ are disabled
+    if (!list)
+        option.attr('disabled', 'disabled');
+
+    // Append to the list
+    $("#list").append(option);
+}
+
 // Load the list of available password dictionaries
 function loadList(indexFile) {
     $.getJSON(indexFile, function ( data ) {
-        // Save list
-        $.each(data[language]['lists'], function(list, descr) {
-            $("#list").append($("<option />").val(list).text(descr));
-        });
+        // Add the lists for the language to the menu
+        appendList(language,  data[language]['lists']['local']);
+        appendList('generic', data[language]['lists']['generic']);
 
         // Save units
         units = data[language]['units'];
