@@ -7,7 +7,7 @@ text:
   generate: Genereer
   list: Lijst
   words: Woorden
-  published: Gepubliceerd onder de
+  licenced: In licentie gegeven krachtens de
   description: |
     Dit is een willekeurig, gegenereerd wachtwoord uit een lijst van <span class="wordCount"></span>&nbsp;woorden.
     Het wachtwoord heeft een entropie van <span class="entropyBits"></span>&nbsp;bits,
