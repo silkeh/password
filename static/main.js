@@ -23,7 +23,7 @@ let passwords;
 let passwordLength = 4;
 let hashSpeed = 5; // In 10^6 attempts/second
 let language = $("html").attr("lang");
-let defaultList = language + "/5000";
+let listName = language + "/5000";
 
 // Time units
 const secondsHour = 3600;
@@ -115,6 +115,9 @@ function updateText() {
     $(".entropyBits").html(Math.round(bits));
     $(".entropyYears").html(text);
     $(".hashSpeed").html(hashSpeed);
+
+    // Update the URL hash
+    window.location.hash = '#' + listName + ';' + passwordLength;
 }
 
 // Set the length of the password
@@ -133,6 +136,8 @@ function setLength(length) {
 // Load a password list
 function loadPasswords(list) {
     "use strict";
+
+    listName = list;
 
     $.getJSON(listDir + list + ".json", function (data) {
         // Save list
@@ -179,7 +184,7 @@ function appendList(name, data) {
 }
 
 // Load the list of available password dictionaries
-function loadList(indexFile) {
+function loadLists(indexFile) {
     "use strict";
 
     $.getJSON(indexFile, function (data) {
@@ -189,13 +194,10 @@ function loadList(indexFile) {
 
         // Save units
         units = data[language].units;
-
-        // Load the default word list
-        loadPasswords(defaultList);
     });
 }
 
-loadList(indexFile);
+loadLists(indexFile);
 
 // Create change functions when document is ready.
 $("document").ready(function () {
@@ -203,9 +205,19 @@ $("document").ready(function () {
 
     const list = $("#list");
     const length = $("#password-length");
-    list.val(defaultList);
+
+    // Grab list/length from location
+    if(window.location.hash) {
+        var hash = window.location.hash.substring(1).split(';');
+        listName = hash[0];
+        passwordLength = Number(hash[1]);
+    }
+
+    // Set list and password length
+    list.val(listName);
     length.val(passwordLength);
 
+    // Set callbacks for list/length changes
     list.change(function () {
         loadPasswords($("#list").val());
     });
@@ -213,5 +225,8 @@ $("document").ready(function () {
     length.change(function () {
         setLength($("#password-length").val());
     });
+
+    // Load the default word list
+    loadPasswords(listName);
 });
 
