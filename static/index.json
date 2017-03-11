@@ -18,7 +18,8 @@
         "numerals": "Getallen",
         "hexadecimal": "Hexadecimale getallen",
         "alphanumeric": "Letters en getallen",
-        "ascii": "ASCII-tekens"
+        "ascii": "ASCII-tekens",
+        "emoji": "Emoji"
       }
     },
     "units": {

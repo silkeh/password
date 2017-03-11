@@ -46,7 +46,7 @@ function generate() {
     let lowerCase = true;
 
     // Small lists have different behaviour
-    if (passwords.length < 1000) {
+    if (passwords.length < 1000 || passwords[0] === "😀") {
         minLength = 0;
         joinChar = "";
         lowerCase = false;
