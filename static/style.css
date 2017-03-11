@@ -20,7 +20,7 @@
 
 body {
     margin: 1em;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", sans-serif, "Segoe UI Emoji", "EmojiOne Mozilla", "EmojiOne";
     font-weight: 300;
     background: white;
 }
