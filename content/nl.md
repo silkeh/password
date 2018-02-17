@@ -15,7 +15,7 @@ text:
     <span class="hashSpeed"></span>&nbsp;miljoen pogingen per seconde.
 ---
 ## Wat doet dit?
-Deze wachtwoordgenerator genereert een veilig en goed te onthouden wachtwoord volgens de uitleg van [XKCD 936][1].
+Deze wachtwoordgenerator genereert een veilig en goed te onthouden wachtwoord volgens de uitleg van [XKCD 936][xkcd].
 Het gebruik van willekeurige woorden zorgt voor wachtwoorden die beter te onthouden zijn,
 terwijl het wachtwoord nog steeds moeilijk te kraken is.
 
@@ -30,18 +30,24 @@ Gebruik daarom altijd een wachtwoordmanager zoals [KeePassX][], [LastPass][] of 
 ## Bronnen
 Woordenlijsten:
 
-  - Meest voorkomende woorden: [Universiteit van Leipzig][2].
-    Licentie: geen.
-  - Complete Woordenlijst: [OpenTaal][3].
-    Licentie: [Creative Commons, Naamsvermelding 3.0 (unported)][4]
+  - Meest voorkomende woorden: Gegenereerd aan de hand van artikelen van [De Correspondent][corr].
+    Licentie: publiek domein ([CC0 1.0][cc0-1.0]).
+  - Complete Woordenlijst: [OpenTaal][].
+    Licentie: [Creative Commons, Naamsvermelding 3.0 (unported)][cc-by-3.0]
     *of*
-    [BSD (herziene versie)][5].
+    [BSD (herziene versie)][bsd-2-clause].
+  - Diceware: Gegenereerd met [DiceWords][] van [Remko Tronçon][diceware].
+    Licentie: [MIT][mit].
 
-[1]: https://xkcd.com/936
-[2]: http://wortschatz.uni-leipzig.de/html/wliste.html
-[3]: http://www.opentaal.org/bestanden/doc_download/20-woordenlijst-v-210g-voor-openofficeorg-3
-[4]: http://creativecommons.org/licenses/by/3.0/legalcode
-[5]: http://opensource.org/licenses/bsd-license.php
+[xkcd]: https://xkcd.com/936
+[corr]: https://decorrespondent.nl
+[opentaal]: http://www.opentaal.org/bestanden/doc_download/20-woordenlijst-v-210g-voor-openofficeorg-3
+[dicewords]: https://github.com/remko/dicewords/
+[diceware]: https://el-tramo.be/blog/diceware-nl/
 [keepassx]: https://www.keepassx.org/
 [lastpass]: https://www.lastpass.com/nl/
 [1password]: https://1password.com/
+[cc0-1.0]: http://creativecommons.org/publicdomain/zero/1.0/
+[cc-by-3.0]: http://creativecommons.org/licenses/by/3.0/legalcode
+[bsd-2-clause]: https://opensource.org/licenses/BSD-2-Clause
+[mit]: https://opensource.org/licenses/MIT
