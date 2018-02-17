@@ -8,7 +8,7 @@
     {{ partial "header" . }}
     <main>
         <h2>Languages</h2>
-        {{ range .Data.Pages }}
+        {{ range where .Data.Pages "Params.language" "!=" nil }}
         <a href="{{ .URL }}">{{ .Params.language }}</a><br/>
         {{ end }}
     </main>
