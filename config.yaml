@@ -1,4 +1,4 @@
-language: "en-GB"
+languageCode: "en-GB"
 title: "Password Generator"
 relativeurls: true
 disableKinds:

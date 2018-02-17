@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ .File.BaseFileName }}">
-<head>
-    {{ partial "head" . }}
-</head>
-<body>
-<section>
-    {{ if not (eq .Dir "licences/") }}
+{{ define "pre-article" }}
+{{ if .Title }}
     {{ partial "header" . }}
     <div id="error" style="display: none;">
         {{ .Params.text.error | safeHTML }}
@@ -14,11 +8,5 @@
         {{ partial "generator" . }}
         <script src="/main.js"></script>
     </main>
-    {{ end }}
-    <article>
-        {{ .Content }}
-    </article>
-    {{ partial "footer" . }}
-</section>
-</body>
-</html>
+{{ end }}
+{{ end }}

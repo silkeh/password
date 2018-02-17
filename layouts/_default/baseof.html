@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ or .Params.lang .File.BaseFileName }}">
+<head>
+    {{ partial "head" . }}
+</head>
+<body>
+<section>
+    {{ block "section" . }}
+        {{ block "pre-article" . }}
+            {{ partial "header" . }}
+        {{ end }}
+        <article>
+            {{ .Content }}
+        </article>
+        {{ partial "footer" . }}
+    {{ end }}
+</section>
+</body>
+</html>

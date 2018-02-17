@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
-<head>
-    {{ partial "head" . }}
-</head>
-<body>
-<section>
+{{ define "pre-article" }}
     {{ partial "header" . }}
     <main>
         <h2>Languages</h2>
-        {{ range where .Data.Pages "Params.language" "!=" nil }}
+        {{ range where .Data.Pages ".Title" "!=" "" }}
         <a href="{{ .URL }}">{{ .Params.language }}</a><br/>
         {{ end }}
     </main>
-    <article>
-        {{ .Content }}
-    </article>
-    {{ partial "footer" . }}
-</section>
-</body>
-</html>
+{{ end }}
