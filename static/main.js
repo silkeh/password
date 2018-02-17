@@ -26,6 +26,7 @@ const length = document.getElementById("password-length");
 
 // Password list
 let passwords = [];
+let defaultList = "";
 
 // Time units
 const secondsHour = 3600;
@@ -134,7 +135,9 @@ function update() {
     setHTML(".hashSpeed", hashSpeed);
 
     // Update the URL hash
-    window.location.hash = '#' + list.value + ';' + length.value;
+    if (list.value !== defaultList || Number(length.value) !== defaultLength) {
+        window.location.hash = '#' + list.value + ';' + length.value;
+    }
 
     // Generate a new password
     generate();
@@ -200,7 +203,8 @@ function init() {
             units = data[language].units;
 
             // Set list and length to defaults
-            let listName = language + "/" + lists.default;
+            defaultList = language + "/" + lists.default;
+            let listName = defaultList;
             let pwLength = defaultLength;
 
             // Override list/length from location
