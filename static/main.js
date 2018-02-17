@@ -132,6 +132,7 @@ function update() {
     // Update the URL hash
     if (list.value !== defaultList || Number(length.value) !== defaultLength) {
         window.location.hash = '#' + list.value + ';' + length.value;
+        document.querySelector("a.generate.button").href = window.location.hash
     }
 
     // Generate a new password
