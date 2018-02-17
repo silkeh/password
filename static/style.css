@@ -50,11 +50,28 @@ header a:hover {
     text-decoration: inherit;
 }
 
-main {
+#error {
     padding: 1em;
     text-align: center;
     background-color: #D3D3D3;
     border-radius: .25em;
+}
+
+main, #error {
+    padding: 1em;
+    text-align: center;
+    border-radius: .25em;
+}
+
+#error {
+    font-weight: 600;
+    color: white;
+    background-color: #B11212;
+    margin-bottom: 1ex;
+}
+
+main {
+    background-color: #D3D3D3;
 }
 
 main .button {

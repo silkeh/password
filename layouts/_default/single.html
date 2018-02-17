@@ -6,6 +6,9 @@
 <body>
 <section>
     {{ partial "header" . }}
+    <div id="error" style="display: none;">
+        {{ .Params.text.error | safeHTML }}
+    </div>
     <main id="generator">
         {{ partial "generator" . }}
         <script src="/main.js"></script>

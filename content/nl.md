@@ -13,7 +13,10 @@ text:
     Het wachtwoord heeft een entropie van <span class="entropyBits"></span>&nbsp;bits,
     waardoor het ongeveer <span class="entropyYears"></span>&nbsp;kost om het wachtwoord te kraken met
     <span class="hashSpeed"></span>&nbsp;miljoen pogingen per seconde.
+  error: |
+    Er is iets misgegaan bij het laden van de pagina.
 ---
+
 ## Wat doet dit?
 Deze wachtwoordgenerator genereert een veilig en goed te onthouden wachtwoord volgens de uitleg van [XKCD 936][xkcd].
 Het gebruik van willekeurige woorden zorgt voor wachtwoorden die beter te onthouden zijn,
