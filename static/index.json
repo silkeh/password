@@ -1,6 +1,7 @@
 {
   "nl": {
     "lists": {
+      "default": "diceware/8k",
       "local": {
         "_description": "Nederlandstalige lijsten",
         "decorrespondent/2048": "2048 meestgebruikte woorden",

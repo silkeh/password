@@ -2,13 +2,13 @@
 <html lang="{{ .File.BaseFileName }}">
 <head>
     {{ partial "head" . }}
-    <script src="/main.js"></script>
 </head>
 <body>
 <section>
     {{ partial "header" . }}
     <main id="generator">
         {{ partial "generator" . }}
+        <script src="/main.js"></script>
     </main>
     <article>
         {{ .Content }}

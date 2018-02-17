@@ -18,12 +18,14 @@
 
 const indexFile = "../index.json";
 const listDir = "../lists/";
+const language = document.querySelector('html').getAttribute('lang');
+const defaultLength = 4;
+const hashSpeed = 5; // In 10^6 attempts/second
+const list = document.getElementById("list");
+const length = document.getElementById("password-length");
 
-let passwords;
-let passwordLength = 4;
-let hashSpeed = 5; // In 10^6 attempts/second
-let language = $("html").attr("lang");
-let listName = language + "/5000";
+// Password list
+let passwords = [];
 
 // Time units
 const secondsHour = 3600;
@@ -35,6 +37,21 @@ let units = {
     "year": "× " + secondsYear + " s",
     "eternity": "∞ s"
 };
+
+// Initialise the password generator.
+try {
+    init();
+}
+catch(error) {
+    document.getElementById("error").style.display = "block";
+    throw error;
+}
+
+// Set the inner HTML for an element
+function setHTML(selector, html) {
+    let list = document.querySelectorAll(selector);
+    for (let e of list) e.innerHTML = html;
+}
 
 // Generate a password from the loaded list
 function generate() {
@@ -53,7 +70,7 @@ function generate() {
     }
 
     // Array for password generation
-    const random = new Uint32Array(passwordLength);
+    const random = new Uint32Array(length.value);
     let gen = [];
 
     // Fill the array with random values
@@ -80,7 +97,7 @@ function generate() {
     // Check if every word has as much entropy as the individual letters
     if (Math.min.apply(Math, lengths) >= minLength) {
         // Display the password
-        $("h1#password").html(gen.join(joinChar));
+        setHTML("h1#password", gen.join(joinChar));
     } else {
         // Try again
         console.log(
@@ -90,11 +107,11 @@ function generate() {
     }
 }
 
-// Change the values of the texts
-function updateText() {
+// Update the password settings and change the values of the texts
+function update() {
     "use strict";
 
-    const space = Math.pow(passwords.length, passwordLength);
+    const space = Math.pow(passwords.length, length.value);
     const bits = Math.log(space) / Math.log(2);
     const time = space / 2 / hashSpeed / Math.pow(10, 6);
     let text = "";
@@ -111,122 +128,91 @@ function updateText() {
     }
 
     // Show the results in the text
-    $(".wordCount").html(passwords.length);
-    $(".entropyBits").html(Math.round(bits));
-    $(".entropyYears").html(text);
-    $(".hashSpeed").html(hashSpeed);
+    setHTML(".wordCount", passwords.length);
+    setHTML(".entropyBits", Math.round(bits));
+    setHTML(".entropyYears", text);
+    setHTML(".hashSpeed", hashSpeed);
 
     // Update the URL hash
-    window.location.hash = '#' + listName + ';' + passwordLength;
-}
-
-// Set the length of the password
-function setLength(length) {
-    "use strict";
-
-    passwordLength = Number(length);
+    window.location.hash = '#' + list.value + ';' + length.value;
 
     // Generate a new password
     generate();
-
-    // Update the text
-    updateText();
 }
 
 // Load a password list
 function loadPasswords(list) {
     "use strict";
+    fetch(listDir + list + ".json")
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            // Save list
+            passwords = data;
 
-    listName = list;
-
-    $.getJSON(listDir + list + ".json", function (data) {
-        // Save list
-        passwords = data;
-
-        // Generate a password with the list
-        generate();
-
-        // Update displayed word counts
-        updateText();
-    });
-}
-
-// Create an option in the dictionary list
-function createOption(name, list, descr) {
-    "use strict";
-
-    // Create option from
-    const option = $("<option />").val(name + "/" + list).text(descr);
-
-    // Lists starting with _ are disabled
-    if (!list) {
-        option.attr("disabled", "disabled");
-    }
-
-    // Append to the list
-    $("#list").append(option);
+            // Update the password
+            update();
+        });
 }
 
 // Append a list to the dictionary list
 function appendList(name, data) {
     "use strict";
+    let list = document.getElementById("list");
 
     // Add description option
-    createOption(name, false, data._description);
+    let option = new Option(data['_description']);
+    option.disabled = true;
+    list.add(option);
 
     // Add other options
-    $.each(data, function (list, descr) {
-        if (list.substring(0, 1) === "_") {
-            return true;
-        }
-        createOption(name, list, descr);
-    });
-}
-
-// Load the list of available password dictionaries
-function loadLists(indexFile) {
-    "use strict";
-
-    $.getJSON(indexFile, function (data) {
-        // Add the lists for the language to the menu
-        appendList(language, data[language].lists.local);
-        appendList("generic", data[language].lists.generic);
-
-        // Save units
-        units = data[language].units;
-    });
-}
-
-loadLists(indexFile);
-
-// Create change functions when document is ready.
-$("document").ready(function () {
-    "use strict";
-
-    const list = $("#list");
-    const length = $("#password-length");
-
-    // Grab list/length from location
-    if(window.location.hash) {
-        var hash = window.location.hash.substring(1).split(';');
-        listName = hash[0];
-        passwordLength = Number(hash[1]);
+    for (let l in data) {
+        if (l.substring(0, 1) === "_") continue;
+        list.add(new Option(data[l], name + "/" + l));
     }
+}
 
-    // Set list and password length
-    list.val(listName);
-    length.val(passwordLength);
+// Load the initial password lists
+function init() {
+    "use strict";
 
     // Set callbacks for list/length changes
-    list.change(function () {
-        loadPasswords($("#list").val());
-    });
+    list.onchange = () => {
+        loadPasswords(list.value);
+    };
+    length.onchange = () => {
+        update();
+    };
 
-    length.change(function () {
-        setLength($("#password-length").val());
-    });
+    // Load the index
+    fetch(indexFile)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            // Add the lists for the language to the menu
+            let lists = data[language].lists;
+            appendList(language, lists.local);
+            appendList("generic", lists.generic);
 
-    // Load the default word list
-    loadPasswords(listName);
-});
+            // Save units
+            units = data[language].units;
 
+            // Set list and length to defaults
+            let listName = language + "/" + lists.default;
+            let pwLength = defaultLength;
+
+            // Override list/length from location
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1).split(';');
+                listName = hash[0];
+                pwLength = Number(hash[1]);
+            }
+
+            // Set the selectors to the correct values and load the list.
+            list.value = listName;
+            length.value = pwLength;
+            loadPasswords(listName);
+        });
+}
