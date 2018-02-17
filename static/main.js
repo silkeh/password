@@ -59,7 +59,7 @@ function generate() {
     "use strict";
 
     // Required password length
-    let minLength = Math.log(passwords.length) / Math.log(26);
+    let minLength = length.value * Math.log(passwords.length) / Math.log(26);
     let joinChar = " ";
     let lowerCase = true;
 
@@ -77,9 +77,9 @@ function generate() {
     // Fill the array with random values
     window.crypto.getRandomValues(random);
 
-    random.forEach(function (n) {
+    for (let n of random) {
         // Get random word from list
-        let w = passwords[Math.floor(Number(n) / Math.pow(2, 32) * passwords.length)];
+        let w = passwords[Math.floor(passwords.length * n / Math.pow(2, 32))];
 
         // Transform to lower case if required
         if (lowerCase) {
@@ -88,15 +88,10 @@ function generate() {
 
         // Push word into array
         gen.push(w);
-    });
+    }
 
-    // Generate an array with the word lengths
-    const lengths = gen.map(function (el) {
-        return el.length;
-    });
-
-    // Check if every word has as much entropy as the individual letters
-    if (Math.min.apply(Math, lengths) >= minLength) {
+    // Check if the password has as much entropy as the individual letters
+    if (gen.join("").length >= minLength) {
         // Display the password
         setHTML("h1#password", gen.join(joinChar));
     } else {
