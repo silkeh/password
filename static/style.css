@@ -97,6 +97,25 @@ main #password-length {
     width: 2.5em;
 }
 
+article h1 {
+    text-align: center;
+    font-size: 180%;
+    margin: 0;
+    padding: .5em 0;
+    border-bottom: .01em solid #D3D3D3;
+}
+
+article blockquote {
+    margin: 1em 0;
+    padding: .5em 0;
+    line-height: inherit;
+    border-left: .25em solid #D3D3D3;
+}
+
+article blockquote p {
+    margin: 0 2em;
+}
+
 footer {
     border-top: .01em solid #D3D3D3;
 }
