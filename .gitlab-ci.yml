@@ -1,32 +1,17 @@
-variables:
-    WWW_DIR:  /www/password/
-    HUGOARGS: --cleanDestinationDir
+image: publysher/hugo
 
-build:
-  type: build
+
+pages: &pages
   script:
-    - hugo ${HUGOARGS}
-    - minify -aro public/ public/
+  - hugo
   artifacts:
     paths:
-      - public
-
-deploy-production:
-  type: deploy
-  script:
-    - rsync -a public/ $WWW_DIR
-  environment:
-    name: production
-    url:  https://password.slxh.nl
+    - public
   only:
-    - master
+  - master
 
-deploy-ipfs:
-  type: deploy
-  script:
-    - ipfs add -qr public/
-  environment:
-      name: ipfs
-      url: https://ipfs.slxh.nl/ipns/password.slxh.nl
-  only:
-    - master
+test:
+  <<: *pages
+  only: ~
+  except:
+  - master
