@@ -1,8 +1,8 @@
 {
   "nl": {
     "lists": {
-      "default": "diceware/8k",
-      "local": {
+      "_default": "diceware/8k",
+      "nl": {
         "_description": "Nederlandstalige lijsten",
         "decorrespondent/2048": "2048 meestgebruikte woorden",
         "decorrespondent/4096": "4096 meestgebruikte woorden",
@@ -18,6 +18,12 @@
         "alphanumeric": "Letters en getallen",
         "ascii": "ASCII-tekens",
         "emoji": "Emoji"
+      },
+      "misc": {
+        "_description": "Overige lijsten",
+        "passwords/2048": "2048 meestgebruikte wachtwoorden",
+        "passwords/4096": "4096 meestgebruikte wachtwoorden",
+        "passwords/8192": "8192 meestgebruikte wachtwoorden"
       }
     },
     "units": {
