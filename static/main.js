@@ -227,8 +227,11 @@ function init() {
         .then((data) => {
             // Add the lists for the language to the menu
             let lists = data[language].lists;
-            appendList(language, lists.local);
-            appendList("generic", lists.generic);
+            for (let name in lists) {
+                if (name.substring(0,1) !== '_') {
+                    appendList(name, lists[name]);
+                }
+            }
 
             // Save units
             units = data[language].units;
@@ -237,7 +240,7 @@ function init() {
         })
         .then((lists) => {
             // Set list and passwordLength to defaults
-            defaultList = language + "/" + lists.default;
+            defaultList = language + "/" + lists._default;
             let conf = {list: defaultList, length: defaultLength};
 
             // Override list/passwordLength from location
