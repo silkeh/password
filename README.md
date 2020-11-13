@@ -3,11 +3,10 @@ This is a simple password generator in the style of [XKCD 936][1] with word list
 
   - Dutch
 
-It can be used on [password.slxh.eu][2], or you can run it yourself.
-It is also possible to download or visit from [IPFS][3]: [/ipns/password.slxh.eu][4].
+It can be used on [password.utwente.io][2], or you can run it yourself.
 
 ## Building
-This website is setup with [Hugo][5],
+This website is setup with [Hugo][3],
 a simple static website engine.
 With Hugo installed, building the site is simple. Just run:
 
@@ -16,7 +15,5 @@ With Hugo installed, building the site is simple. Just run:
 That's it!
 
 [1]: https://xkcd.com/936/
-[2]: https://password.slxh.eu/
-[3]: https://ipfs.io
-[4]: https://ipfs.io/ipns/password.slxh.eu
-[5]: https://gohugo.io/
+[2]: https://password.utwente.io/
+[3]: https://gohugo.io/
